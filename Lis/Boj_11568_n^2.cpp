@@ -9,22 +9,21 @@
 using namespace std;
 
 const int INF = 0x7fffffff;
-vector<int> v;
+int a[1001], dp[1001];
 int main(void) {
-	int n, ans = 0, x;
+	int n, ans = 0, mx = -1;
 	scanf("%d", &n);
-	v.push_back(-INF);
 	for (int i = 0; i < n; i++) {
-		scanf("%d", &x);
-		if (v.back() < x) {
-			v.push_back(x);
-			ans++;
-		}
-		else {
-			auto it = lower_bound(v.begin(), v.end(), x);
-			*it = x;
-		}
+		scanf("%d", &a[i]);
+		dp[i] = 1;
 	}
-	printf("%d\n", ans);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j <= i; j++) {
+			if (a[i] > a[j] && dp[j] + 1 > dp[i])
+				dp[i] = dp[j] + 1;
+		}
+		mx = max(mx, dp[i]);
+	}
+	printf("%d\n", mx);
 	return 0;
 }
