@@ -26,4 +26,3 @@ int main(void) {
 	cout << num << '\n';
 	return 0;
 }
-
