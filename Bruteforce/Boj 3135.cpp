@@ -20,20 +20,15 @@ int find(int x) { return p[x] ^ x ? find(p[x]) : x; }
 int abs(int x, int y) { return x - y > 0 ? x - y : y - x; }
 int gcd(int x, int y) { return y ? gcd(y, x%y) : x; }
 
-int a, b, n, mn, el[5];
+int a, b, n, mn, x;
 int main(void) {
 	scanf("%d %d %d", &a, &b, &n);
 	mn = abs(b - a);
 	for (int i = 0; i < n; i++){
-		scanf("%d", &el[i]);
-		if (mn > abs(b - el[i]))
-			mn = abs(b - el[i]);
+		scanf("%d", &x);
+		mn = min(mn, abs(x - b) + 1);
 	}
-	if (mn == abs(b - a))
-		printf("%d\n", abs(b - a));
-	
-	else
-		printf("%d\n", 1 + mn);
+	printf("%d\n", mn);
 	
 	return 0;
 }
