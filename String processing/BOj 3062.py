@@ -11,3 +11,13 @@ while tc:
             break;
     if flag:
         print("YES")
+
+'''
+for i in range(int(input())):
+    _= input()
+    a = str(int(_[::-1]) + int(_))
+    if a == a[::-1]:
+        print("YES")
+    else:
+        print("NO")
+'''
