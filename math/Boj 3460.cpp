@@ -21,20 +21,17 @@ int abs(int x, int y) { return x - y > 0 ? x - y : y - x; }
 int gcd(int x, int y) { return y ? gcd(y, x%y) : x; }
 
 int main(void) {
-	int tc, n;
+	int tc, n, tmp;
 	cin >> tc;
 	while (tc--) {
+		tmp = 0;
 		string s;
 		cin >> n;
 		while (n) {
-			s.push_back(n%2?'1':'0');
+			if (n % 2) printf("%d ", tmp);
+			tmp++;
 			n /= 2;
 		}
-		s.reserve();
-		for (int i = 0; i < s.size(); i++)
-			if (s[i]=='1')
-				printf("%d ", i);
-		puts("");
 	}
 	return 0;
 }
