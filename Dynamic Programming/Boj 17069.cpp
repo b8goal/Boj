@@ -40,12 +40,6 @@ int gcd(int x, int y) { return y ? gcd(y, x%y) : x; }
 int dx[] = { 1,0,1 }, dy[] = { 0,1,1 };
 ll Map[35][35], cache[35][35][3];
 int mx, n;
-struct Node {
-	int sx, sy, ex, ey;
-	Node(int sx1, int sy1, int ex1, int ey1) {
-		sx = sx1, sy = sy1, ex = ex1, ey = ey1;
-	}
-};
 
 int poss(int x,int y) {
 	if (x + 1 > n || y + 1 > n) return 0;
@@ -53,18 +47,6 @@ int poss(int x,int y) {
 	return 1;
 }
 
-void print_Map() {
-	for (int k = 0; k < 3; k++) {
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				printf("%lld ", cache[i][j][k]);
-			}
-			puts("");
-		}
-		puts("");
-	}
-	
-}
 int main(void) {
 	memset(cache, 0, sizeof  cache);
 	scanf("%d", &n);
