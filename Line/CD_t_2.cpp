@@ -67,5 +67,5 @@ int main(void) {
 			if (b[i] != 1)
 				cout << b[i];
 		}
-	return 0;
+	return 0; 
 }
