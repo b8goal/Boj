@@ -27,14 +27,6 @@ int main(void){
 		}
 	}
 
-	//for (int i = 990; i <= 1010; i++) {
-	//	for (int j = 990; j <= 1010; j++) {
-	//		cout << chk[i][j];
-	//	}puts("");
-	//}
-
-
-
 	for (int i = 0; i < 2000; i++)
 		for (int j = 0; j < 2000; j++)
 			if (chk[i][j] && chk[i + 1][j] && chk[i][j + 1] && chk[i + 1][j + 1])
