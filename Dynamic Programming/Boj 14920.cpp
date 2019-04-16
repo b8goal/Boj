@@ -4,20 +4,12 @@ using namespace std;
 
 int main(void) {
 	int i = 1;
-	long long n, cur, next;
+	long long n;
 	cin >> n;
-	cur = n;
-	if (n == 1)
-		cout << 1 << '\n';
-	else
-		while (1) {
-			++i;
-			next = cur % 2 == 0 ? cur / 2 : 3 * cur + 1;
-			cur = next;
-			if (next == 1) {
-				cout << i << '\n';
-				break;
-			}
-		}
+	while (n != 1) {
+		++i;
+		n = n % 2 == 0 ? n / 2 : 3 * n + 1;
+	}
+	cout << i << '\n';
 	return 0;
 }
