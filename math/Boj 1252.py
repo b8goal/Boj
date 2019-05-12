@@ -11,3 +11,6 @@ for i in range(len(b)-1,-1,-1):
         t_b += tmp
     tmp *=2
 print(format(t_a+t_b,'b'))
+
+#a,b = map(str,input().split())
+#print(bin(int(a,2)+int(b,2))[2:])
