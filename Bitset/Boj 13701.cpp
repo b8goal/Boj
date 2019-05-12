@@ -4,12 +4,12 @@
 using namespace std;
 
 bitset<33554432> b;
-int n;
+int x;
 
 int main(void) {
 	while (scanf("%d", &n) != EOF) {
-		if (!b[n]) printf("%d ", n);
-		b[n] = 1;
+		if (!b[x]) printf("%d ", x);
+		b[x] = 1;
 	}
 	return 0;
 }
