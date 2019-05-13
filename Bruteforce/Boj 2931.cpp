@@ -4,24 +4,23 @@
 using namespace std;
 
 char Map[30][30];
-int R, C;
+int R, C, dr[4] = { 1,-1,0,0 }, dc[4] = { 0,0,1,-1 };
 int left(int r, int c) {
-	return c - 1 > 0 && (Map[r][c - 1] == '+' || Map[r][c - 1] == '-' || Map[r][c - 1] == '1' || Map[r][c - 1] == '2');
+	return c - 1 >= 0 && (Map[r][c - 1] == '+' || Map[r][c - 1] == '-' || Map[r][c - 1] == '1' || Map[r][c - 1] == '2');
 }
 int right(int r, int c) {
 	return c + 1 < C && (Map[r][c + 1] == '+' || Map[r][c + 1] == '-' || Map[r][c + 1] == '3' || Map[r][c + 1] == '4');
 }
 int up(int r, int c) {
-	return  r - 1 > 0 && (Map[r - 1][c] == '+' || Map[r - 1][c] == '|' || Map[r - 1][c] == '1' || Map[r - 1][c] == '4');
+	return  r - 1 >= 0 && (Map[r - 1][c] == '+' || Map[r - 1][c] == '|' || Map[r - 1][c] == '1' || Map[r - 1][c] == '4');
 }
 int down(int r, int c) {
 	return  r + 1 < R && (Map[r + 1][c] == '+' || Map[r + 1][c] == '|' || Map[r + 1][c] == '2' || Map[r + 1][c] == '3');
 }
 int main(void) {
 	cin >> R >> C;
-	for (int i = 0; i < R; i++) {
+	for (int i = 0; i < R; i++) 
 		cin >> Map[i];
-	}
 
 	for (int i = 0; i < R; i++) {
 		for (int j = 0; j < C; j++) {
@@ -33,7 +32,6 @@ int main(void) {
 			else if (up(i, j) && right(i, j)) cout << i + 1 << ' ' << j + 1 << " 2";
 			else if (up(i, j) && left(i, j)) cout << i + 1 << ' ' << j + 1 << " 3";
 			else if (left(i, j) && down(i, j)) cout << i + 1 << ' ' << j + 1 << " 4";
-
 		}
 	}
 	return 0;

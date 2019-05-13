@@ -3,9 +3,4 @@ import sys
 for _ in range(3):
     n = int(input())
     a = [sys.stdin.readline() for i in range(n)]
-    if sum(list(map(int,a))) == 0:
-        print(0)
-    elif sum(list(map(int,a))) > 0:
-        print('+')
-    else:
-        print('-')
+    print('0' if a == 0 else '+' if s>0 else '-')
