@@ -6,6 +6,7 @@ using namespace std;
 int a[55][55], b[55][55], chk[15], d[] = { 1,-1,0,0,0,0,1,-1 };
 int n, m, mn, empty_cnt, cnt;
 pair<int, int> pos[15];
+
 void f(int k, int t) {
 	if (t == m) {
 		queue<pair<int, int> > q;
