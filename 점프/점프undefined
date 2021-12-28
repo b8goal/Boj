@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n;
+int d[4] = { 0,1,1,0 }, a[100 + 5][100 + 5];
+long long cache[100 + 5][100 + 5];
+
+long long f(int y, int x)
+{
+  if (y == n - 1 && x == n - 1) return 1;
+  long long & ret = cache[y][x];
+  if (ret != -1) return ret;
+  ret = 0;
+  for (int i = 0; i < 2; ++i)
+  {
+    int ny = y + a[y][x] * d[i], nx = x + a[y][x] * d[i + 2];
+    if (ny<0 || ny>n - 1 || nx<0 || nx>n - 1 ) continue;
+    ret += f(ny, nx);
+  }
+  return ret;
+}
+int main(void)
+{
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
+  cin >> n;
+  for (int i = 0; i < n; ++i)
+    for (int j = 0; j < n; ++j)
+      cin >> a[i][j];
+  memset(cache, -1, sizeof cache);
+  cout << f(0, 0) << '\n';
+  return 0;
+}
