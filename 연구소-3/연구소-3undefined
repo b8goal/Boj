@@ -1,0 +1,105 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+int n, m, ans;
+int cMap[50][50], Map[50][50], chk[50*50], d[8] = { 1,-1,0,0,0,0,1,-1 };
+vector<pair<int, int> > v, t;
+queue<pair<int, int> > q;
+
+void bfs(void)
+{
+  memset(cMap, 0, sizeof cMap);
+  for (auto it : t)
+  {
+    cMap[it.first][it.second] = 1;
+    q.push({ it.first,it.second });
+  }
+  while (!q.empty())
+  {
+    pair<int, int> t = q.front(); q.pop();
+    for (int i = 0; i < 4; i++)
+    {
+      int nx = t.first + d[i], ny = t.second + d[i + 4];
+      if (nx<0 || nx>n - 1 || ny<0 || ny>n - 1 || cMap[nx][ny] != 0 || Map[nx][ny] == 1) continue;
+      cMap[nx][ny] = cMap[t.first][t.second] + 1;
+      q.push({ nx,ny });
+    }
+  }
+}
+
+int find_min(void)
+{
+  int tmp = 0;
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      if (!cMap[i][j] && !Map[i][j])
+        return 987654321;
+      if (Map[i][j] == -1) continue;
+      tmp = max(tmp, cMap[i][j]);;
+    }
+  }
+  return tmp - 1;
+}
+
+void f(int start,int count)
+{
+  if (t.size() == m)
+  {
+    int tmp;
+    bfs();
+    tmp = find_min();
+
+    ans = min(ans, tmp);
+    return;
+  }
+  for (int i = start; i < v.size(); i++)
+  {
+    if (!chk[i])
+    {
+      chk[i] = 1;
+      t.push_back({ v[i].first,v[i].second });
+      f(i+1, count+1);
+      chk[i] = 0;
+      t.pop_back();
+    }
+  }
+}
+int main(void)
+{
+  ans = 987654321;
+  bool flag = 0;
+  cin >> n >> m;
+  for (int i = 0; i < n; i++)
+    for (int j = 0; j < n; j++)
+    {
+      cin >> Map[i][j];
+      if (!Map[i][j])
+        flag = true;
+      if (Map[i][j] == 2)
+      {
+        Map[i][j] = -1;
+        v.push_back({ i,j });
+      }
+    }
+  if (!flag)
+  {
+    cout << 0 << '\n';
+    return 0;
+  }
+
+  f(0, 0);
+
+  if (ans == 987654321)
+    cout << -1 << '\n';
+  else
+    cout << ans << '\n';
+  return 0;
+}
