@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(void) {
+  int tc;
+  long long dp[41][2];
+  cin >> tc;
+  memset(dp, 0, sizeof dp);
+  dp[0][0] = dp[1][1] = 1;
+
+  for (int i = 2; i <= 40; i++) {
+    for (int j = 0; j <= 1; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i - 2][j];
+    }
+  }
+  while (tc--)
+  {
+    int x;
+    cin >> x;
+    cout << dp[x][0] << ' ' << dp[x][1] << '\n';
+  }
+  return 0;
+}
