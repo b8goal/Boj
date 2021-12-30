@@ -1,0 +1,26 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n;
+int arr[300 + 5], cache[3][300 + 5];
+
+int main(void)
+{
+  cin >> n;
+  for (int i = 0; i < n; ++i)
+    cin >> arr[i];
+
+  cache[1][0] = cache[2][0] = arr[0];
+  cache[1][1] = arr[1];
+  cache[2][1] = arr[0] + arr[1];
+  for (int i = 2; i < n; ++i)
+  {
+    cache[1][i] = max(cache[1][i - 2], cache[2][i - 2]) + arr[i];
+    cache[2][i] = cache[1][i - 1] + arr[i];
+  }
+
+  cout << max(cache[1][n - 1],cache[2][n - 1] ) << '\n';
+  return 0;
+}
